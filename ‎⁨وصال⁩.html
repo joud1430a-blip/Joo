@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وصال</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F7FD;--card:#fff;--ink:#14284B;--mute:#5E6E8C;--blue:#2F6BEA;--amber:#F5B942;--violet:#8B6CF0;--line:#DDE5F5;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1729;--card:#17233D;--ink:#EAF0FF;--mute:#9AA9C8;--line:#26365A}}
+:root[data-theme="dark"]{--bg:#0E1729;--card:#17233D;--ink:#EAF0FF;--mute:#9AA9C8;--line:#26365A}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:Cairo,Tahoma,sans-serif;background:var(--bg);color:var(--ink);display:flex;justify-content:center}
+#app{width:100%;max-width:440px;height:100%;display:flex;flex-direction:column;position:relative}
+main{flex:1;overflow-y:auto;padding:20px 18px 12px}
+.view{display:none}.view.on{display:block}
+h1{font-size:26px;font-weight:800}h2{font-size:20px;font-weight:800;margin:18px 0 4px}
+.sub{color:var(--mute);font-size:14px}
+.logo{text-align:center;padding:10px 0 4px}
+.logo b{font-size:64px;font-weight:800;color:var(--blue);line-height:1.2;display:block}
+.hero{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.big{display:flex;align-items:center;gap:14px;border:0;border-radius:20px;padding:20px 18px;color:#fff;font:inherit;text-align:start;cursor:pointer;width:100%}
+.big .ic{font-size:34px}.big strong{display:block;font-size:18px}.big span{font-size:13px;opacity:.9}
+.big:focus-visible,nav button:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.b1{background:var(--blue)}.b2{background:#B97D00}.b3{background:#6D4FD8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.lesson{border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);cursor:pointer;text-align:start;font:inherit;color:inherit;padding:0}
+.lesson .pic{height:92px;display:grid;place-items:center;font-size:44px}
+.lesson div.t{padding:10px 12px}.lesson strong{display:block;font-size:15px}.lesson small{color:var(--mute)}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+.cam{position:relative;border-radius:20px;background:#0A1222;aspect-ratio:3/4;overflow:hidden;display:grid;place-items:center;color:#fff}
+.cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cam .ph{font-size:90px;opacity:.5}
+.live{position:absolute;top:12px;inset-inline-end:12px;background:#0008;padding:3px 12px;border-radius:12px;font-size:13px}
+.live:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ddc84;margin-inline-end:6px}
+.cap{position:absolute;bottom:14px;inset-inline:14px;background:#0009;border:1px solid #fff4;border-radius:14px;padding:10px;text-align:center;backdrop-filter:blur(6px)}
+.cap b{font-size:24px;display:block}.cap small{opacity:.85}
+.ctr{display:flex;justify-content:space-around;align-items:center;margin-top:16px}
+.ctr button{background:none;border:0;color:var(--ink);font:inherit;font-size:12px;cursor:pointer;display:grid;gap:4px;justify-items:center}
+.ctr .rec{width:68px;height:68px;border-radius:50%;background:var(--blue);border:5px solid var(--card);outline:3px solid var(--blue)}
+textarea{width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:14px;font:inherit;font-size:17px;resize:none;height:90px}
+.btn{width:100%;margin-top:12px;border:0;border-radius:14px;padding:14px;background:var(--blue);color:#fff;font:inherit;font-weight:600;font-size:17px;cursor:pointer}
+.stage{margin-top:16px;border-radius:20px;background:var(--card);border:1px solid var(--line);padding:22px;text-align:center;min-height:210px;display:grid;place-items:center}
+.stage .hand{font-size:96px;display:block;transition:transform .35s}.stage .hand.pop{transform:scale(1.12) rotate(-6deg)}
+.stage .w{font-size:20px;font-weight:600}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:14px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--blue)}
+.pill{display:inline-block;padding:4px 12px;border-radius:12px;background:var(--line);margin:3px;font-size:14px}
+nav{display:flex;border-top:1px solid var(--line);background:var(--card);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;border:0;font:inherit;font-size:12px;color:var(--mute);display:grid;justify-items:center;gap:2px;padding:6px;cursor:pointer}
+nav button span{font-size:22px}nav button.on{color:var(--blue);font-weight:600}
+.back{background:none;border:0;font:inherit;color:var(--blue);cursor:pointer;margin-bottom:6px;font-size:15px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px;border:1px solid var(--line);background:var(--card);border-radius:14px;margin-top:10px}
+.empty{color:var(--mute);text-align:center;padding:30px 0}
+</style>
+</head>
+<body>
+<div id="app">
+<main>
+ <section class="view on" id="home">
+  <div class="logo"><b>وصال</b><p class="sub">لغة واحدة .. تواصل بلا حدود</p></div>
+  <h2>مرحباً بك في وصال</h2>
+  <p class="sub">تطبيق يربط بين مجتمع الصم وضعاف السمع وغير الناطقين بلغة الإشارة.</p>
+  <div class="hero">
+   <button class="big b1" data-go="lessons"><span class="ic">📖</span><div><strong>دروس لغة الإشارة</strong><span>تعلّم الأساسيات والمفردات</span></div></button>
+   <button class="big b2" data-go="s2t"><span class="ic">📷</span><div><strong>مترجم الإشارة إلى نص</strong><span>استخدم الكاميرا للترجمة الفورية</span></div></button>
+   <button class="big b3" data-go="t2s"><span class="ic">💬</span><div><strong>مترجم النص إلى إشارة</strong><span>اكتب النص وشاهد الإشارة</span></div></button>
+  </div>
+ </section>
+
+ <section class="view" id="lessons">
+  <h1>الدروس</h1>
+  <h2>مبتدئ</h2><p class="sub">ابدأ من الأساسيات</p>
+  <div class="grid" id="g1"></div>
+  <h2>متقدم</h2><p class="sub">وسّع مفرداتك ومهاراتك</p>
+  <div class="grid" id="g2"></div>
+ </section>
+
+ <section class="view" id="lesson">
+  <button class="back" data-go="lessons">‹ الدروس</button>
+  <h1 id="lt"></h1><p class="sub" id="ls"></p>
+  <div class="stage"><div><span class="hand" id="lh"></span><p class="w" id="lw"></p></div></div>
+  <div class="dots" id="ld"></div>
+  <button class="btn" id="ln">الكلمة التالية</button>
+ </section>
+
+ <section class="view" id="s2t">
+  <h1>مترجم الإشارة إلى نص</h1>
+  <div class="cam" style="margin-top:14px">
+   <video id="vid" autoplay playsinline muted hidden></video>
+   <span class="ph" id="ph">🙋</span>
+   <span class="live" id="live" hidden>مباشر</span>
+   <div class="cap"><b id="ar">اضغط للبدء</b><small id="en">Tap to start</small></div>
+  </div>
+  <div class="ctr">
+   <button id="flip"><span style="font-size:26px">🔄</span>تغيير الكاميرا</button>
+   <button class="rec" id="rec" aria-label="بدء الترجمة"></button>
+   <button id="stop"><span style="font-size:26px">⏸</span>إيقاف الترجمة</button>
+  </div>
+  <p class="sub" style="text-align:center;margin-top:14px">نموذج العرض: الترجمة هنا تجريبية، والتعرف الحقيقي يحتاج نموذج ذكاء اصطناعي.</p>
+ </section>
+
+ <section class="view" id="t2s">
+  <h1>مترجم النص إلى إشارة</h1>
+  <textarea id="txt" placeholder="اكتب هنا، مثل: مرحبا شكرا" aria-label="النص"></textarea>
+  <button class="btn" id="tr">ترجمة</button>
+  <div class="stage"><div><span class="hand" id="th">🤟</span><p class="w" id="tw">اكتب نصاً ثم اضغط ترجمة</p></div></div>
+  <div class="dots" id="td"></div>
+ </section>
+
+ <section class="view" id="hist">
+  <h1>السجل</h1><div id="hl"><p class="empty">لا توجد ترجمات بعد.</p></div>
+ </section>
+
+ <section class="view" id="me">
+  <h1>الملف</h1>
+  <div class="row"><span>الدروس المكتملة</span><b id="done">0</b></div>
+  <div class="row"><span>الترجمات المحفوظة</span><b id="cnt">0</b></div>
+  <div class="row"><span>الوضع الداكن</span><button class="pill" id="theme" style="border:0;cursor:pointer;font:inherit">تبديل</button></div>
+ </section>
+</main>
+<nav>
+ <button data-go="home" class="on"><span>🏠</span>الرئيسية</button>
+ <button data-go="lessons"><span>📖</span>الدروس</button>
+ <button data-go="hist"><span>🕘</span>السجل</button>
+ <button data-go="me"><span>👤</span>الملف</button>
+</nav>
+</div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const L=[
+ {id:'g',n:'التحيات',c:5,e:'👋',bg:'#BFD7FF',w:['مرحبا','السلام عليكم','صباح الخير','مساء الخير','مع السلامة'],lv:1},
+ {id:'a',n:'الأحرف الأبجدية',c:26,e:'🔤',bg:'#C5EBD3',w:['أ','ب','ت','ث','ج'],lv:1},
+ {id:'n',n:'الأرقام',c:10,e:'🔢',bg:'#D9CCFA',w:['واحد','اثنان','ثلاثة','أربعة','خمسة'],lv:1},
+ {id:'p',n:'العبارات الأساسية',c:12,e:'💬',bg:'#FFC9D1',w:['شكرا','عفوا','نعم','لا','من فضلك'],lv:1},
+ {id:'d',n:'المواقف اليومية',c:15,e:'🏪',bg:'#BDE7EA',w:['ماء','طعام','مستشفى','مدرسة','بيت'],lv:2},
+ {id:'f',n:'المشاعر والأحاسيس',c:8,e:'😊',bg:'#FFD6BA',w:['سعيد','حزين','غاضب','خائف','متحمس'],lv:2}];
+const E={'مرحبا':'🖐️','شكرا':'🤲','نعم':'👍','لا':'☝️','سعيد':'😊','حزين':'😢','ماء':'💧','طعام':'🍽️','بيت':'🏠','مدرسة':'🏫'};
+const hand=w=>E[w]||['🤟','👌','✌️','🤙','🤞'][[...w].reduce((a,c)=>a+c.charCodeAt(0),0)%5];
+const H=JSON.parse(sessionStorage.getItem('wh')||'[]');let done=new Set();
+function go(v){$$('.view').forEach(s=>s.classList.toggle('on',s.id===v));
+ const m={lesson:'lessons'}[v]||v;$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===m));
+ if(v==='hist')renderH();if(v==='me'){$('#done').textContent=done.size;$('#cnt').textContent=H.length}
+ if(v!=='s2t')stop();$('main').scrollTop=0}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+function card(l){return `<button class="lesson" data-l="${l.id}"><div class="pic" style="background:${l.bg}">${l.e}</div><div class="t"><strong>${l.n}</strong><small>${l.c} فيديو</small><div class="bar"><i style="width:${done.has(l.id)?100:0}%"></i></div></div></button>`}
+function renderL(){$('#g1').innerHTML=L.filter(l=>l.lv==1).map(card).join('');$('#g2').innerHTML=L.filter(l=>l.lv==2).map(card).join('')}
+renderL();
+let cur,i=0;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-l]');if(!b)return;cur=L.find(l=>l.id===b.dataset.l);i=0;$('#lt').textContent=cur.n;$('#ls').textContent=cur.c+' فيديو في هذا الدرس';showL();go('lesson')});
+function dots(el,n,k){$(el).innerHTML=Array.from({length:n},(_,j)=>`<i class="${j===k?'on':''}"></i>`).join('')}
+function showL(){const w=cur.w[i];$('#lh').textContent=hand(w);$('#lw').textContent=w;dots('#ld',cur.w.length,i);
+ $('#ln').textContent=i===cur.w.length-1?'إنهاء الدرس':'الكلمة التالية'}
+$('#ln').onclick=()=>{if(i<cur.w.length-1){i++;showL()}else{done.add(cur.id);renderL();go('lessons')}};
+function addH(a){H.unshift({a,t:new Date().toLocaleTimeString('ar')});sessionStorage.setItem('wh',JSON.stringify(H.slice(0,30)))}
+function renderH(){$('#hl').innerHTML=H.length?H.map(h=>`<div class="row"><span>${h.a}</span><small class="sub">${h.t}</small></div>`).join(''):'<p class="empty">لا توجد ترجمات بعد.</p>'}
+let tm;
+$('#tr').onclick=()=>{const ws=$('#txt').value.trim().split(/\s+/).filter(Boolean);clearInterval(tm);
+ if(!ws.length){$('#tw').textContent='اكتب كلمة واحدة على الأقل';return}
+ addH(ws.join(' '));let k=0;const step=()=>{const h=$('#th');h.textContent=hand(ws[k]);h.classList.add('pop');setTimeout(()=>h.classList.remove('pop'),350);$('#tw').textContent=ws[k];dots('#td',ws.length,k);k++;if(k>=ws.length)clearInterval(tm)};
+ step();tm=setInterval(step,1400)};
+let st,fm='user',run;const demo=[['مرحبا','Hello'],['شكرا','Thank you'],['كيف حالك؟','How are you?'],['نعم','Yes']];
+async function start(){stop();$('#live').hidden=false;
+ try{st=await navigator.mediaDevices.getUserMedia({video:{facingMode:fm}});$('#vid').srcObject=st;$('#vid').hidden=false;$('#ph').hidden=true}catch(e){$('#ph').hidden=false}
+ let k=0;const s=()=>{const d=demo[k++%demo.length];$('#ar').textContent=d[0];$('#en').textContent=d[1];addH(d[0])};s();run=setInterval(s,3000)}
+function stop(){clearInterval(run);if(st){st.getTracks().forEach(t=>t.stop());st=null}$('#vid').hidden=true;$('#live').hidden=true;$('#ph').hidden=false}
+$('#rec').onclick=start;$('#stop').onclick=stop;$('#flip').onclick=()=>{fm=fm==='user'?'environment':'user';if(run)start()};
+$('#theme').onclick=()=>{const r=document.documentElement;const d=getComputedStyle(r).getPropertyValue('--bg').trim()==='#0E1729';r.dataset.theme=d?'light':'dark'};
+</script>
+</body>
+</html>
